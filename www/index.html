@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot - Silsa</title>
+    <link rel="stylesheet" href="css/chat.css">
+</head>
+<body>
+    <!-- Contenedor principal -->
+    <div id="app-container">        
+        <!-- Logo -->
+        <div id="logo" aria-label="Logo de Silsa">
+            <img src="img/silsa.png" alt="Logo de Silsa" width="900" height="auto">
+        </div>
+        <!-- Contenedor del Chatbot -->
+        <div class="chat-container hidden" id="chat-container" aria-live="polite">
+            <!-- Encabezado del chatbot -->
+            <header>
+                <img src="img/silsa.png" alt="Encabezado del chatbot de Silsa" width="400">
+            </header>
+            <!-- Caja de mensajes -->
+            <div class="chat-box" id="chat-box">
+                <img src="img/chatbot.jpeg" alt="Imagen representativa del chatbot" width="370" height="auto">
+                <div class="message bot-message">
+                    Hola, soy el bot de Silsa. ¿En qué puedo ayudarte hoy?
+                </div>
+            </div>
+            <!-- Barra de carga -->
+            <div id="loadingBar" class="loading-bar" style="display: none;" role="status" aria-hidden="true">
+                <div class="spinner"></div> Cargando...
+            </div>
+            <!-- Campo de entrada de mensaje -->
+            <div class="message-input">
+                <input type="text" id="message" placeholder="Escribe un mensaje..." aria-label="Campo para escribir un mensaje">
+                <button id="send-button" aria-label="Enviar mensaje">Enviar</button>
+            </div>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="js/chat.js"></script>
+    <script src="js/animation.js"></script>
+</body>
+</html>

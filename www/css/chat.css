@@ -1,0 +1,220 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+   
+    background: linear-gradient(to bottom, #FFFF00, #0000FF);
+}
+
+/* Contenedor principal */
+#app-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Logo */
+#logo {
+    position: absolute;
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+/* Chatbot (inicialmente oculto) */
+#chat-container.hidden {
+    display: none;
+}
+
+/* Animación de desvanecimiento */
+.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    border: 1px solid #444;
+    border-radius: 10px;
+    background-color: #222;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.chat-box {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #1e1e1e; /* Fondo más claro para el área de chat */
+}
+
+.message {
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    word-break: break-word;
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-in-out; /* Animación para mensajes */
+    animation-fill-mode: forwards; /* Mantener el estado final de la animación */
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.bot-message {
+    align-self: flex-start;
+    background-color: #FFD700; /* Azul para los mensajes del bot */
+    color: black; /* Texto blanco para contraste */
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: #333; /* Fondo oscuro para los mensajes del usuario */
+    color: #fff; /* Texto blanco para contraste */
+}
+
+.message-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #444; /* Borde oscuro */
+    background-color: #222; /* Fondo oscuro */
+    position: relative;
+}
+
+.message-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #444; /* Borde oscuro */
+    border-radius: 5px;
+    font-size: 14px;
+    color: #fff; /* Texto blanco */
+    background-color: #333; /* Fondo oscuro para el campo de entrada */
+}
+
+.message-input input::placeholder {
+    color: #888; /* Color del placeholder */
+}
+
+.message-input button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #FFFF00; /* Amarillo para el botón */
+    color: black; /* Texto negro */
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s; /* Transición suave para el color de fondo y transformación */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para efecto 3D */
+}
+
+.message-input button:hover {
+    background-color: #FFD700; /* Color dorado al pasar el mouse */
+    transform: translateY(-2px); /* Elevar el botón al pasar el mouse */
+}
+
+.message-input button:active {
+    transform: translateY(0); /* Restablecer posición al hacer clic */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reducir sombra al hacer clic */
+}
+
+
+.message-input button:hover {
+    background-color: #0000FF; /* Azul más oscuro al pasar el ratón */
+    color: white;
+}
+
+.loading-bar {
+    width: 100%;
+    height: 5px;
+    background: #007bff; /* Color de la barra de carga */
+    animation: loadingAnimation 1s infinite;
+}
+
+@keyframes loadingAnimation {
+    0% { transform: scaleX(0); }
+    100% { transform: scaleX(1); }
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid white;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+
+/* Animación para el spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Media Query para pantallas más pequeñas */
+@media (max-width: 480px) {
+    .chat-container {
+        max-width: 100%;
+        height: 100vh;
+    }
+
+    .message-input {
+        padding: 5px;
+    }
+
+    .message-input input {
+        font-size: 12px;
+    }
+
+    .message-input button {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+}
+
+
+/* Estilos básicos para el mensaje del bot */
+.message.bot-message {
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 0;
+  position: relative;
+  transition: box-shadow 0.5s ease;
+}
+
+/* Estilo de luz neón para nivel alto */
+.message.bot-message.high-satisfaction {
+  box-shadow: 0 0 10px 3px cyan;
+}
+
+/* Estilo de luz neón para nivel medio */
+.message.bot-message.medium-satisfaction {
+  box-shadow: 0 0 10px 3px black;
+}
+
+/* Estilo de luz neón para nivel bajo */
+.message.bot-message.low-satisfaction {
+  box-shadow: 0 0 10px 3px red;
+}
